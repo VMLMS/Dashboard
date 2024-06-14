@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: your-app-image
+    container_name: your-app-container
+    ports:
+      - "80:80"
+    environment:
+      APP_ENV: production
+      APP_KEY: base64:5Pj7Ht0fDgCqfRHN7veU9Q27uf5o7JBGdnLf7C

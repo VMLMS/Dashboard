@@ -1,17 +1,28 @@
 services:
   - type: web
     name: lms
-    env: php
+    env: docker
     plan: free
     region: oregon
-    buildCommand: 'composer install && php artisan migrate'
-    startCommand: 'php artisan serve --host 0.0.0.0 --port 10000'
+    dockerfilePath: Dockerfile
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_KEY
-        sync: false
+        value: base64:YourAppKey
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        value: https://lms.onrender.com
+        value: https://your-app-name.onrender.com
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: your-database-host
+      - key: DB_PORT
+        value: 3306
+      - key: DB_DATABASE
+        value: your-database-name
+      - key: DB_USERNAME
+        value: your-database-user
+      - key: DB_PASSWORD
+        value: your-database-password
