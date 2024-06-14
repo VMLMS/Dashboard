@@ -1,5 +1,5 @@
-# Use the official PHP image as the base image
-FROM php:8.0-apache
+# Use the official PHP image with PHP 8.2 and Apache
+FROM php:8.2-apache
 
 # Set working directory
 WORKDIR /var/www/html
@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     libonig-dev \
     libxml2-dev \
-    zip \
     libzip-dev \
     && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl
 
@@ -29,11 +28,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy existing application directory contents
 COPY . /var/www/html
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data . /var/www/html
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
 
-# Change current user to www-data
-USER www-data
+# Install PHP dependencies
+RUN composer install --working-dir=/var/www/html --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 # Expose port 80
 EXPOSE 80
