@@ -1,0 +1,6 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "index.blade.php", "use": "@vercel/php" }
+    ]
+  }

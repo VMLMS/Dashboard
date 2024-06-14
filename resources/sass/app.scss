@@ -1,0 +1,14 @@
+// app.scss
+
+// Import Tailwind CSS
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Import Bootstrap (if needed)
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Your custom styles
+body {
+    background-color: #f8fafc;
+}
